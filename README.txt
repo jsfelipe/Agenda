@@ -1,4 +1,4 @@
 Agenda de contatos 
 ------------------------------------------------------------------------
 
-Projeto para práticar Jquery + JSON + PHP
+Projeto para praticar Jquery + JSON + PHP
