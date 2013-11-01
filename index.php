@@ -157,14 +157,6 @@ $('.tip').tooltip('hide')
 
                       <div class="list-group">
 
-                          
-
-                          <a href="#" class="list-group-item active">
-                            Alberto de Oliveira dos Santos
-                          </a>
-                          <a href="#" class="list-group-item">Aline da Silva</a>
-                          <a href="#" class="list-group-item">Augusto de Melo Silva</a>
-
                       </div>
 
                     </div>
@@ -185,9 +177,12 @@ $('.tip').tooltip('hide')
               <img src="http://demo.okendoken.com/img/2.jpg" class="img-thumbnail" width="80" >
               <div id="editar_foto">editar</div>
           </a>
-              <h4>Alberto de Oliveira dos Santos <a href="#" data-toggle="modal" data-target="#myModal"  class="btn-md tip" role="button" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a></h4>
+              <h4 id="nome">
+                
+              </h4>
+              <a href="#" data-toggle="modal" data-target="#myModal"  class="btn-md tip" role="button" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
 
-              <label><strong>E-mail:</strong> felipe@clickn.com.br</label>
+              <label><strong>E-mail:</strong><label id="email"></label></label>
               <label><strong>Casa:</strong> (81) 3032.9100</label>
               <label><strong>Celular:</strong> (81) 9747.0222</label>
 
@@ -219,14 +214,14 @@ $('.tip').tooltip('hide')
       </div>
       <div class="modal-body">
 
-        <form role="form">
+        <form role="form" id="formNovoContato"  method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Nome:</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nome">
+            <input type="text" class="form-control" name="txtnome" placeholder="Nome">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">E-mail</label>
-            <input type="email" class="form-control" id="exampleInputPassword1" placeholder="E-mail">
+            <input type="email" name="txtemail" class="form-control"  placeholder="E-mail">
           </div>
           <div class="form-group">
             <label for="exampleInputFile">Celular:</label>
@@ -250,7 +245,7 @@ $('.tip').tooltip('hide')
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-primary" id="btnSalvarContato">Salvar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
