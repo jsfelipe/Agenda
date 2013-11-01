@@ -2,7 +2,7 @@ $(function() {
 
     letra = 'A';
 	var letras = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-    
+    contatos = new Array();
 
     //Carregar lista
 
@@ -18,9 +18,10 @@ $(function() {
                 //var link_letras;
                 $(".list-group").empty();
                 $(dados).each(function(index, value){
-                    $(".list-group").append('<a href="#" class="list-group-item" id="' + index +'" >' + this.nome + " | " + this.email + '</a>');
-                        //console.log(index);
-                        //console.log(value);
+                    $(".list-group").append('<a href="#" class="list-group-item" id="' + this.id_contato +'" >' + this.nome + " | " + this.email + '</a>');
+                        contatos[this.id_contato] = this;
+                        
+                        //console.log(contatos);
                 });
 
             }
@@ -36,15 +37,10 @@ $(function() {
 
         });
     });
-
-        
-        
-        
+      
         
     }
     
-     
-
 
 	//------------------------------------
 
@@ -59,7 +55,6 @@ $(function() {
     $('#lista_letras a').click(function() {
         letra = $(this).attr('href');
         letra = letra.split('#')[1];
-        console.log(letra);
         carregarLista(letra);
     });
 
@@ -72,14 +67,15 @@ $(function() {
 
 
     // Quando clicar no nome carregar dados para a div principal
-     $(".list-group a").click(function(event) {
-            
+     $(document).on("click", ".list-group a", function(event) {
+            event.preventDefault();
             //recuperar id do array no item clicado
             var index = $(this).attr('id');
 
             // adicionar itens do array no html
-            $("#nome").html( letras[index].nome );
-            $("#email").html( letras[index].email );
+            $("#nome").html( contatos[index].nome );
+            $("#email").html( contatos[index].email );
+            //console.log(contatos);
 
      });
 
