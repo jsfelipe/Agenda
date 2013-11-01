@@ -128,6 +128,11 @@ $('.tip').tooltip('hide')
    <div class="row mt40">
      
              <div class="tabbable tabs-left col-sm-7">
+              
+             
+              <div class="alert fade in hide">
+                <div id="msg_alert"></div>
+              </div>
 
               <ul class="nav nav-tabs nav-stacked" id="lista_letras">
                  
@@ -183,12 +188,12 @@ $('.tip').tooltip('hide')
               <a href="#" data-toggle="modal" data-target="#myModal"  class="btn-md tip" role="button" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
 
               <label><strong>E-mail:</strong><label id="email"></label></label>
-              <label><strong>Casa:</strong> (81) 3032.9100</label>
-              <label><strong>Celular:</strong> (81) 9747.0222</label>
+              <label><strong>Casa:</strong> <label id="celular"></label></label>
+              <label><strong>Celular:</strong> <label id="casa"></label></label>
 
               <hr>
 
-               <label><strong>Endereço:</strong> Rua Cel. Kleber de Andrade, 900 - Candeias - Jaboatão dos Gauarapes/PE - CEP: 54450-160
+               <label><strong>Endereço:</strong> <label id="endereco"></label>
 
               <a href="#" class="tip" data-toggle="tooltip" title="Ver no Google Maps" style="margin-bottom:10px"  role="button"><span class="glyphicon glyphicon-map-marker"></span></a>
                </label>
@@ -225,18 +230,18 @@ $('.tip').tooltip('hide')
           </div>
           <div class="form-group">
             <label for="exampleInputFile">Celular:</label>
-            <input type="tel" id="tel" class="form-control">
+            <input type="tel" id="tel" name="celular" class="form-control">
             
           </div>
           <div class="form-group">
             <label for="exampleInputFile">Fone Casa:</label>
-            <input type="tel" id="casa" class="form-control">
+            <input type="tel"  name="casa" class="form-control">
             
           </div>
 
            <div class="form-group">
             <label for="exampleInputFile">Endereço:</label>
-            <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+            <textarea name="endereco" cols="30" rows="10" class="form-control"></textarea>
             
           </div>
           
