@@ -79,6 +79,9 @@
 .list-group{
   margin-left: 92px;
   margin-top: 10px;
+  min-height: 600px;
+  max-height: 700px;
+  overflow: auto;
 }
 
 .mt40{margin-top: 40px}
@@ -98,25 +101,45 @@
   font-size: 11px;
 }
 
+#carregando {
+width: 155px;
+height: 44px;
+padding: 11px 10px;
+background-color: #C00;
+color: #FFF;
+position: fixed;
+top: 0;
+right: 0;
+font-weight: bold;
+z-index: 9000 ;
+}
+
+.nav>li>a {
+position: relative;
+display: block;
+padding: 5px 15px;
+}
+
+.bar {
+    height: 18px;
+    background: green;
+}
+
 </style>
     
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/funcoes.js"></script>
-
-<script type="text/javascript"> 
-$(function() {
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
+<script src="js/funcoes.js"></script>
 
 
-$('.tip').tooltip('hide')
-
-});
-</script>
 
 
-  </head>
+</head>
 <body>
+
   <div class="container">	
+
 
   <div class="row">
     
@@ -130,7 +153,7 @@ $('.tip').tooltip('hide')
              <div class="tabbable tabs-left col-sm-7">
               
              
-              <div class="alert fade in hide">
+              <div class="alert fade in" style="display:none;">
                 <div id="msg_alert"></div>
               </div>
 
@@ -139,12 +162,12 @@ $('.tip').tooltip('hide')
               </ul>
 
                 <div class="tab-content">
-                        <a href="#" data-toggle="modal" data-target="#myModal" style="margin-bottom:10px" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a href="#" data-toggle="modal" data-target="#modalCadastro" style="margin-bottom:10px" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span></a>
 
                     <!-- input buscar -->
                         <div class="">
                                 <div class="input-group">
-                                  <input type="text" class="form-control">
+                                  <input type="text" class="form-control" id="edit_busca">
                                   <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">
                                       
@@ -165,11 +188,6 @@ $('.tip').tooltip('hide')
                       </div>
 
                     </div>
-                    
-                    
-
-
-                
 
                 </div>
 
@@ -177,27 +195,30 @@ $('.tip').tooltip('hide')
             </div>
 
 
-            <div class="tab-content col-sm-5">
-          <a href="#">
-              <img src="http://demo.okendoken.com/img/2.jpg" class="img-thumbnail" width="80" >
-              <div id="editar_foto">editar</div>
-          </a>
+            <div class="tab-content col-sm-5 tab-conteudo"  style="display:none">
+              <a href="#">
+                  <img src="http://demo.okendoken.com/img/2.jpg" class="img-thumbnail" width="80" >
+                  <div id="editar_foto" data-toggle="modal" data-target="#modalFoto">editar</div>
+              </a>
               <h4 id="nome">
                 
               </h4>
-              <a href="#" data-toggle="modal" data-target="#myModal"  class="btn-md tip" role="button" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+              <a id="link_editar" data-toggle="modal" data-target="#myModal"  class="btn-md tip" role="button" data-toggle="tooltip" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
 
               <label><strong>E-mail:</strong><label id="email"></label></label>
-              <label><strong>Casa:</strong> <label id="celular"></label></label>
-              <label><strong>Celular:</strong> <label id="casa"></label></label>
+              <label><strong>Casa:</strong> <label id="casa"></label></label>
+              <label><strong>Celular:</strong> <label id="celular"></label></label>
 
               <hr>
 
                <label><strong>Endereço:</strong> <label id="endereco"></label>
 
-              <a href="#" class="tip" data-toggle="tooltip" title="Ver no Google Maps" style="margin-bottom:10px"  role="button"><span class="glyphicon glyphicon-map-marker"></span></a>
+              <a id="linkgoogle" class="tip" data-toggle="tooltip" title="Ver no Google Maps" style="margin-bottom:10px"  role="button"><span class="glyphicon glyphicon-map-marker"></span></a>
                </label>
 
+              <a id="deletar_contato" class="tip" data-toggle="tooltip" title="Deletar" style="margin-bottom:10px"  role="button"><span class="glyphicon glyphicon-trash"></span></a>
+               
+              <input type="hidden" id="idcontato">
 
 
 
@@ -209,42 +230,42 @@ $('.tip').tooltip('hide')
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal Cadastro -->
+<div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Novo Contato</h4>
+        <h4 class="modal-title" id="myModalLabel">Contato</h4>
       </div>
       <div class="modal-body">
 
         <form role="form" id="formNovoContato"  method="post">
           <div class="form-group">
-            <label for="exampleInputEmail1">Nome:</label>
-            <input type="text" class="form-control" name="txtnome" placeholder="Nome">
+            <label >Nome:</label>
+            <input type="text" id="txtnome" class="form-control" name="txtnome" placeholder="Nome">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">E-mail</label>
-            <input type="email" name="txtemail" class="form-control"  placeholder="E-mail">
+            <label>E-mail</label>
+            <input type="email" id="txtemail" name="txtemail" class="form-control"  placeholder="E-mail">
           </div>
           <div class="form-group">
-            <label for="exampleInputFile">Celular:</label>
-            <input type="tel" id="tel" name="celular" class="form-control">
+            <label >Celular:</label>
+            <input type="text" name="txtcelular" id="txtcelular" class="form-control">
             
           </div>
           <div class="form-group">
-            <label for="exampleInputFile">Fone Casa:</label>
-            <input type="tel"  name="casa" class="form-control">
+            <label>Fone Casa:</label>
+            <input type="text" id="txtcasa"  name="txtcasa" class="form-control">
             
           </div>
 
            <div class="form-group">
-            <label for="exampleInputFile">Endereço:</label>
-            <textarea name="endereco" cols="30" rows="10" class="form-control"></textarea>
+            <label>Endereço:</label>
+            <textarea name="txtendereco" id="txtendereco" cols="30" rows="10" class="form-control"></textarea>
             
           </div>
-          
+          <input type="hidden" id="idalterar">
         </form>
 
       </div>
@@ -255,6 +276,34 @@ $('.tip').tooltip('hide')
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-    
+
+
+<!-- Modal Foto -->
+<div class="modal fade" id="modalFoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Alterar foto</h4>
+        </div>
+        <div class="modal-body">
+            <input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
+            <div id="progress">
+              <div class="bar" style="width: 0%;"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+   
+<!-- Loading Ajax -->
+<div id="carregando" style="display: none">
+   Aguarde...
+</div>
+
+
   </body>
 </html>
