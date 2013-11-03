@@ -122,7 +122,11 @@ $(function() {
                     url: 'update.php',
                     dataType: 'json',
                     data: {'id' : id_alterar,
-                           'nome' : $('#txtnome').val() 
+                           'nome' : $('#txtnome').val(),
+                           'email' : $('#txtemail').val(),
+                           'casa' : $('#txtcasa').val(),
+                           'celular' : $('#txtcelular').val(),
+                           'endereco' : $('#txtendereco').val() 
                     },
                     success: function(data) {
                        
@@ -215,18 +219,21 @@ $(function() {
                     $('#msg_alert').html("Contato deletado com sucesso!");
                     $('.alert').css( "display","block" );
                     $('.alert').addClass("alert-warning");
-                    $('.alert').delay(5000).fadeOut();
+                   
                     carregarLista(letra);
-                    $(".tab-conteudo").hide();
+                    
                   }else{
                     $('#myModal').modal('hide');
                     $('#msg_alert').html("Erro, tente novamente!");
                     $('.alert').css( "display","block" );
                     $('.alert').addClass("alert-danger");
-                    $('.alert').delay(5000).fadeOut();
+                    
                   } 
             }
          
+        }).done(function(dados){
+                $(".tab-conteudo").hide();
+                $('.alert').delay(5000).fadeOut();
         });
 
     });
