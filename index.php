@@ -240,7 +240,7 @@ padding: 5px 15px;
       </div>
       <div class="modal-body">
 
-        <form role="form" id="formNovoContato"  method="post">
+        <form role="form" id="formContato"  method="post">
           <div class="form-group">
             <label >Nome:</label>
             <input type="text" id="txtnome" class="form-control" name="txtnome" placeholder="Nome">
@@ -265,7 +265,8 @@ padding: 5px 15px;
             <textarea name="txtendereco" id="txtendereco" cols="30" rows="10" class="form-control"></textarea>
             
           </div>
-          <input type="hidden" id="idalterar">
+          <input type="hidden" id="idalterar" name="idalterar">
+          <input type="hidden" id="action" name="action">
         </form>
 
       </div>

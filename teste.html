@@ -1,21 +1,29 @@
 <script src="js/jquery.js"></script>
-<div class="show">
- <rec>First item</rec>
- <rec>Second item</rec>
- <rec>Third item</rec>
- <rec>Fourth item</rec>
- <p class="show-line"></p>
-</div>
+<ul>
+ <li>First item</li>
+ <li>Second item</li>
+ <li>Third item</li>
+ <li>Fourth item</li>
+</ul>
 
 <script>
-$('.show > rec').hide();
 
-$('rec').each(function(index,value) { 
-    var x = $(this).text();
-    console.log(index[0].value);
-    setTimeout(function() {
-       $('p.show-line').html(x).hide().fadeIn('slow');  
-     }, index * 5000);
+array = new Array();
+i = 0;
 
+$('ul li').each(function(index,value) { 
+    
+    if(i==1){
+    	console.log(value);
+    }
+	//array[index] = value;
+
+	i++;
+
+    
+
+
+    
 });
+//console.log(array[1]);
 </script>

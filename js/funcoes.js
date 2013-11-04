@@ -121,13 +121,7 @@ $(function() {
                     type: 'POST',
                     url: 'update.php',
                     dataType: 'json',
-                    data: {'id' : id_alterar,
-                           'nome' : $('#txtnome').val(),
-                           'email' : $('#txtemail').val(),
-                           'casa' : $('#txtcasa').val(),
-                           'celular' : $('#txtcelular').val(),
-                           'endereco' : $('#txtendereco').val() 
-                    },
+                    data: $('form#formContato').serialize(),
                     success: function(data) {
                        
                         if (data == 1){
@@ -160,7 +154,7 @@ $(function() {
                     type: 'POST',
                     url: 'action.php',
                     dataType: 'json',
-                    data: $('form#formNovoContato').serialize(),
+                    data: $('form#formContato').serialize(),
                     success: function(data) {
                         if (data == 1){
                             $('#modalCadastro').modal('hide');
@@ -241,6 +235,7 @@ $(function() {
 
     //Mostrar contato para alteração
     $('#link_editar').click(function() {
+        $('#action').val('carregar_dados');
         $("#carregando").show();
         var idalterar = $('#idcontato').val();
         $.ajax({
@@ -267,12 +262,12 @@ $(function() {
             //console.log(index[0]);
 
             // adicionar itens do array no html
-            $("#idalterar").attr({value: index[0].id_contato});
-            $("#txtnome").val( index[0].nome );
-            $("#txtemail").val( index[0].email );
-            $("#txtcelular").val( index[0].celular );
-            $("#txtcasa").val( index[0].casa );
-            $("#txtendereco").val( index[0].endereco );
+            $("#idalterar").attr({value: index.id_contato});
+            $("#txtnome").val( index.nome );
+            $("#txtemail").val( index.email );
+            $("#txtcelular").val( index.celular );
+            $("#txtcasa").val( index.casa );
+            $("#txtendereco").val( index.endereco );
 
         });
     });
