@@ -108,7 +108,7 @@ $(function() {
 
 
 
-    //enviar dados do form modal para json
+    //CADASTRO E ALTERAÇÃO
     $('#btnSalvarContato').click(function() {
         
         $("#carregando").show();
@@ -116,7 +116,7 @@ $(function() {
         if ($("#idalterar").val() != "" ){
                 //console.log('Alteração');
                 var id_alterar = $('#idalterar').val();
-                // Cadastrar //enviar dados do form modal para json
+                // Alterar //enviar dados do form modal para json
                 $.ajax({
                     type: 'POST',
                     url: 'update.php',
