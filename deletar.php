@@ -3,8 +3,7 @@ if(count($_POST) > 0){
 
 	//echo $_POST['del'];
 
-	$con = mysql_connect('localhost', 'root', '');
-	mysql_select_db("agenda") or die(mysql_error());
+	include_once "conexao.php";
 
 	if (!$con) {
 	    die('Não foi possível conectar: ' . mysql_error());

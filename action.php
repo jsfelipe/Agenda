@@ -1,14 +1,8 @@
 <?php 
-
-$msg = '';
-
 if(count($_POST) > 0){
 	
-	//echo json_encode($_POST);
-   	
-	// Conexao
-	$con = mysql_connect('localhost', 'root', '');
-	mysql_select_db("agenda") or die(mysql_error());
+   	include_once "conexao.php";
+	
 	if (!$con) {
 	    die('Não foi possível conectar: ' . mysql_error());
 	}else{
